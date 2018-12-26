@@ -10,14 +10,18 @@ const signUp = async (email,password,username) => {
             email:email
         });
 
+        console.log(user)
+
         if(user)
             return null
 
-        user = await User.findOne({
-                usernmae:usernmae
+        let user1 = await User.findOne({
+                username:username
         });
 
-        if(user)
+        console.log(user1)
+
+        if(user1)
             return null;
 
         const hashedPass = bcrypt.hashSync(password);
@@ -51,11 +55,22 @@ const signUp = async (email,password,username) => {
    
 }
 //Authenticate user
-const login = async (email,password) => {
+const login = async (name,password) => {
     try{
-        const user = await User.findOne({
-            email
+        let testuser = await User.findOne({
+            email: name
         });
+
+        let testuser2 = await User.findOne({
+            username: name
+        })
+
+        if(!testuser && !testuser2)
+            return null
+        
+        let user;
+
+        testuser ? user = testuser : user = testuser2;
 
         const correctPass = bcrypt.compareSync(password,user.password);
 

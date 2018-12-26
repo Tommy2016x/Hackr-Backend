@@ -3,10 +3,10 @@ const router = require('express').Router();
 const {signUp,login} = require('../../services/user');
 
 router.post('/signup',async (req,res) => {
-  const {email,password} = req.body;
+  const {email,password,username} = req.body;
 
   try{
-    const token = await signUp(email,password);
+    const token = await signUp(email,password,username);
 
     res.send(token);
     
