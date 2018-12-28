@@ -6,7 +6,7 @@ const db = require('./database');
 db();
 
 const users = require('./routes/api/users')
-// const locationService = require('./routes/api/geolocation');
+const locationService = require('./routes/api/geolocation');
 
 const app = express();
 app.use(bodyparser.urlencoded({
@@ -14,7 +14,7 @@ app.use(bodyparser.urlencoded({
 }));
 app.use(bodyparser.json());
 app.use('/users',users);
-// app.use('/location',locationService);
+app.use('/location',locationService);
 
 
 

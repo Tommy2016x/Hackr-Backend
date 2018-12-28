@@ -1,13 +1,20 @@
 const User = require('../../models/Users');
+const {calculateDistance} = require('./utils');
 
-// const findUsersNearby = async (latitude,longitude,) => {
-//     let data = await User.find({});
+const findUsersNearby = async (locationData) => {
+    let data = await User.find({});
 
-//     let responseData = [];
+    let nearbyUserData = [];
 
-    
+    data.map(user => {
+        let {location} = user;
+        let distance = calculateDistance(locationData,location);
 
-//     return data;
-// }
+        if(distance < 15)
+            nearbyUserData.push(user);
+    })
 
-// module.exports = {findUsersNearby};
+    return nearbyUserData;
+}
+
+module.exports = {findUsersNearby};
