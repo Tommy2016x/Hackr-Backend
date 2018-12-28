@@ -9,8 +9,7 @@ const UsersSchema = new Schema({
     username: String,
     profile: {photos: [],bio: String,skills: []},
     matches: [],
-    hackathon: String,
-    team: String
+    location: {latitude: Number,longitude: Number}
 });
 
 module.exports = mongoose.model('Users', UsersSchema);

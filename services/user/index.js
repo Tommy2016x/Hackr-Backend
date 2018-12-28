@@ -32,9 +32,7 @@ const signUp = async (email,password,username) => {
             username,
             profile:{photos:[],bio: null,skills:[]},
             matches:[],
-            hackathon: null,
-            team: null
-
+            location: {latitude: null,longitude: null}
         });
 
         await newUser.save();
@@ -51,7 +49,6 @@ const signUp = async (email,password,username) => {
     } catch(err){
         return null;
     }
-        
    
 }
 //Authenticate user
@@ -93,5 +90,15 @@ const login = async (name,password) => {
     }
 }
 
+//update a value in the User schema
+const updateValue = async (id,param,value) => {
+    try{
+        await User.update({_id:id},{$set: {[param]: value}});
 
-module.exports =  {signUp,login};
+    }catch(err){
+        console.log(err)
+    }
+}
+
+
+module.exports =  {signUp,login,updateValue};
