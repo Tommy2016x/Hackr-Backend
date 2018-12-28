@@ -1,3 +1,5 @@
+//utility functions to calculate coordinates and distance between them 
+
 const calculateXCoordinate = (latitude,longitude) => {
     return (6371 * (Math.cos(latitude)) * (Math.cos(longitude)));
 }
@@ -6,6 +8,7 @@ const calculateYCoordinate = (latitude,longitude) => {
     return (6371 * (Math.cos(latitude)) * (Math.sin(longitude)));
 }
 
+//returns distance between 2 set of latitude/longitude coordinates
 const calculateDistance = (coordinatesA,coordinatesB) => {
     const latA = coordinatesA.latitude;
     const longA = coordinatesA.longitude;
@@ -22,7 +25,7 @@ const calculateDistance = (coordinatesA,coordinatesB) => {
     const xDiff = x2-x1;
     const yDiff = y2-y1;
 
-    return (Math.sqrt((xDiff * xDiff)) + (yDiff * yDiff));
+    return Math.sqrt((xDiff * xDiff) + (yDiff * yDiff));
 }
 
 module.exports = {calculateDistance}
